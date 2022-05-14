@@ -65,16 +65,16 @@ export default function Food() {
 export async function getServerSideProps(context) {
   const session = await getSession(context);
 
-  /*if (session == null) {
+  if (session == null) {
     return {
       redirect: {
         destination: "/api/auth/signin",
         permanent: false,
       },
     };
-  }*/
+  }
 
-  console.log("prueba index:", session);
+  console.log("prueba food:",session);
   return {
     props: { session },
   };

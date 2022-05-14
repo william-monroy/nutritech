@@ -6,8 +6,12 @@ import styles from "../styles/Home.module.css";
 import {signIn} from 'next-auth/react';
 import Hero from '/public/Hero.png';
 import Image from "next/image";
+import Link from "next/link";
+import { getSession, useSession } from "next-auth/react";
 
 export default function Home() {
+  const { data, status } = useSession()
+  if (status === 'loading') return null // si esta cargando no mostrar nada
   
   return (
     <div className={styles.container}>
@@ -22,9 +26,27 @@ export default function Home() {
         <Image src={Hero} alt="Hero image" width={700} height={500}/>
         <div className={styles.footer}>  
           <h4>¡Sí tu alimentación quieres mejorar NutriTech debes de usar!</h4>
-          <Button color="success" auto ghost onClick={() => signIn()}>Continuar</Button>
+          <Link href="/food"><Button color="success" auto ghost>Continuar</Button></Link>
         </div>  
       </main>
     </div>
   );
+}
+
+export async function getServerSideProps(context) {
+  const session = await getSession(context);
+
+  if (session !== null) {
+    return {
+      redirect: {
+        destination: "/food",
+        permanent: false,
+      },
+    };
+  }
+
+  console.log("prueba index:",session);
+  return {
+    props: { session },
+  };
 }
