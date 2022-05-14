@@ -1,8 +1,10 @@
+import { Button } from "@nextui-org/react";
 import Head from "next/head";
 import Image from "next/image";
 import { ChartP } from "../components/ChartP";
 import SwitchTheme from "../components/SwitchTheme";
 import styles from "../styles/Home.module.css";
+import {signIn} from 'next-auth/react';
 
 export default function Home() {
   
@@ -16,6 +18,8 @@ export default function Home() {
 
       <main className={styles.main}>
         <h1>Home</h1>
+
+        <Button color="success" auto ghost onClick={() => signIn()}>Continuar</Button>
       </main>
 
       <footer className={styles.footer}>

@@ -1,5 +1,7 @@
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
+import GithubProvider from "next-auth/providers/github";
+import CredentialsProvider from "next-auth/providers/credentials"
 import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
 import clientPromise from "../../../lib/mongodb";
 
@@ -7,7 +9,7 @@ export default NextAuth({
   theme: {
     colorScheme: "dark", // "auto" | "dark" | "light"
     brandColor: "#93E4FB", // Hex color code
-    logo: "/LogoHorizontal.png", // Absolute URL to image
+    logo: "/icon-512x512.png", // Absolute URL to image
   },
   debug: process.env.NODE_ENV === "development",
   session: {
@@ -50,7 +52,10 @@ export default NextAuth({
         return null;
       },
     }),
-    
+    GithubProvider({
+      clientId: process.env.GITHUB_ID,
+      clientSecret: process.env.GITHUB_SECRET,
+    }),
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,

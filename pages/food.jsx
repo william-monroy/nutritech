@@ -3,8 +3,15 @@ import { ChartP } from "../components/ChartP";
 import SwitchTheme from "../components/SwitchTheme";
 import styles from "../styles/Food.module.css";
 
-const Food = () => {
-  const data = {
+import PageLayout from "../components/PageLayout";
+import { getSession, useSession } from "next-auth/react";
+
+
+export default function Food(){
+  const { data, status } = useSession()
+  if (status === 'loading') return null // si esta cargando no mostrar nada
+
+  const dataChart = {
     labels: [
       "Habilidades de Supervisión",
       "Sentido común y tacto en las relaciones interpersonales",
@@ -25,13 +32,31 @@ const Food = () => {
   };
 
   return (
-    <div className={styles.Food}>
-      <SwitchTheme />
-      <div style={{ height: "800px" }}>
-        <ChartP data={data} />
+    <PageLayout>
+      <div className={styles.Food}>
+        <SwitchTheme />
+        <div style={{ height: "800px" }}>
+          <ChartP data={dataChart} />
+        </div>
       </div>
-    </div>
+    </PageLayout>
   );
 };
 
-export default Food;
+export async function getServerSideProps(context) {
+  const session = await getSession(context);
+
+  /*if (session == null) {
+    return {
+      redirect: {
+        destination: "/api/auth/signin",
+        permanent: false,
+      },
+    };
+  }*/
+
+  console.log("prueba index:",session);
+  return {
+    props: { session },
+  };
+}
