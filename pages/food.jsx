@@ -1,3 +1,4 @@
+import { Grid } from "@nextui-org/react";
 import React from "react";
 import { ChartP } from "../components/ChartP";
 import SwitchTheme from "../components/SwitchTheme";
@@ -13,18 +14,22 @@ export default function Food(){
 
   const dataChart = {
     labels: [
-      "Habilidades de Supervisión",
-      "Sentido común y tacto en las relaciones interpersonales",
-      "Capacidad de decisión",
+      "Verduras",
+      "Leguminosas",
+      "Alimentos de origen animal",
+      "Cereales",
+      "Frutas",
     ],
     datasets: [
       {
         label: "# of Votes",
-        data: [66.07, 20.0, 33.33],
+        data: [25, 12, 13, 25, 25],
         backgroundColor: [
-          "rgba(255, 99, 132, 0.5)",
-          "rgba(54, 162, 235, 0.5)",
-          "rgba(255, 206, 86, 0.5)",
+          "rgba(71, 199, 36, 0.7)",
+          "rgba(199, 23, 14, 0.7)",
+          "rgba(245, 99, 24, 0.7)",
+          "rgba(255, 206, 86, 0.7)",
+          "rgba(71, 199, 36, 0.7)",
         ],
         borderWidth: 1,
       },
@@ -33,10 +38,11 @@ export default function Food(){
 
   return (
     <PageLayout>
-      <div className={styles.Food}>
-        <SwitchTheme />
-        <div style={{ height: "800px" }}>
-          <ChartP data={dataChart} />
+    <div className={styles.Food}>
+      <SwitchTheme />
+      
+      <div style={{ width: "400px" }}>
+        <ChartP data={data} />
         </div>
       </div>
     </PageLayout>
