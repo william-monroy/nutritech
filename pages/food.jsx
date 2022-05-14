@@ -54,7 +54,7 @@ export default function Food() {
           {/* <Grid md={8} css={{backgroundColor: '$blue200'}}>
           </Grid> */}
         </Grid.Container>
-        <div style={{ width: "400px" }}>
+        <div style={{ width: "350px" }}>
           <ChartP data={dataChart} />
         </div>
       </div>
