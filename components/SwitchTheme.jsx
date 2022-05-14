@@ -14,6 +14,7 @@ const SwitchTheme = () => {
       iconOn={<SunIcon filled />}
       iconOff={<MoonIcon filled />}
       onChange={() => darkMode.toggle()}
+      color="error"
     />
   );
 };

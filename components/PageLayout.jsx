@@ -1,9 +1,10 @@
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
-import Logo from "../public/icon-512x512.png";
+import Logo from "../public/logo.png";
 import {signOut, useSession} from 'next-auth/react';
 import { Button } from "@nextui-org/react";
+import SwitchTheme from "./SwitchTheme";
 
 
 export default function PageLayout({
@@ -41,6 +42,7 @@ export default function PageLayout({
             <img src={session?.user.image} alt={`profile image of ${session?.user.name}`} />
             <h5>{session?.user.name}</h5>
           </section>)}
+          <SwitchTheme />
           <Button color="error" auto ghost
             onClick={() => signOut()}
           >
@@ -57,6 +59,7 @@ export default function PageLayout({
             align-items: center;
             padding: 1.2rem 2rem;
             height: auto;
+            background-color: #f5f5f5;
           }
           main {
             padding: 40px 80px 0px;
