@@ -1,14 +1,11 @@
-import { Switch } from "@nextui-org/react";
 import Head from "next/head";
 import Image from "next/image";
-import useDarkMode from "use-dark-mode";
-import { MoonIcon } from "../components/MoonIcon";
-import { SunIcon } from "../components/SunIcon";
+import SwitchTheme from "../components/SwitchTheme";
 import styles from "../styles/Home.module.css";
 
 export default function Home() {
 
-  const darkMode = useDarkMode(false);
+  
 
   return (
     <div className={styles.container}>
@@ -23,13 +20,7 @@ export default function Home() {
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>
 
-        <Switch
-          checked={useDarkMode.value}
-          size="xl"
-          iconOn={<SunIcon filled />}
-          iconOff={<MoonIcon filled />}
-          onChange={() => darkMode.toggle()}
-        />
+        <SwitchTheme />        
 
         <p className={styles.description}>
           Get started by editing{" "}
