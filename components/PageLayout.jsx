@@ -59,7 +59,7 @@ export default function PageLayout({
             align-items: center;
             padding: 1.2rem 2rem;
             height: auto;
-            background-color: #f5f5f5;
+            // background-color: #f5f5f5;
           }
           main {
             padding: 40px 80px 0px;
