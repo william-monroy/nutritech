@@ -1,13 +1,25 @@
-import { Grid, Input, Row, Spacer, Text } from "@nextui-org/react";
-import React from "react";
+import {
+  Button,
+  Card,
+  Grid,
+  Input,
+  Row,
+  Spacer,
+  Text,
+  Textarea,
+} from "@nextui-org/react";
+import React, { useState, useEffect } from "react";
 import { ChartP } from "../components/ChartP";
-import SwitchTheme from "../components/SwitchTheme";
 import styles from "../styles/Food.module.css";
 
 import PageLayout from "../components/PageLayout";
 import { getSession, useSession } from "next-auth/react";
+import Legend from "../components/Legend";
+import Link from "next/link";
 
 export default function Food() {
+  const [alimento, setAlimento] = useState("");
+
   const { data, status } = useSession();
   if (status === "loading") return null; // si esta cargando no mostrar nada
 
@@ -38,13 +50,12 @@ export default function Food() {
   return (
     <PageLayout>
       <div className={styles.Food}>
-        <Grid.Container>
-          {/* <Grid md={12} css={{ backgroundColor: "$accents4" }}> */}
+        <Grid.Container gap={2}>
           <Grid md={12}>
             <Row>
               <Text
                 h1
-                size={40}
+                // size={45}
                 css={{
                   textGradient: "45deg, $blue600 -20%, $pink600 50%",
                 }}
@@ -56,26 +67,72 @@ export default function Food() {
           <Grid
             md={7}
             xs={12}
-            // css={{ backgroundColor: "$yellow600" }}
             direction="column"
+            // css={{ backgroundColor: "$blue400" }}
           >
             <Spacer y={0.5} />
             <Text size={18}>
               Si dudas de qué alimentos vas a consumir, consulta aquí:
             </Text>
             <Spacer y={0.5} />
-            <Input
-              type="text"
-              placeholder="Buscar alimento"
-              css={{ mw: "350px" }}
-              aria-label="Buscar alimento"
-            />
+            <Row>
+              <Input
+                type="text"
+                placeholder="Buscar alimento"
+                aria-label="Buscar alimento"
+                onChange={(e) => setAlimento(e.target.value)}
+              />
+              <Spacer x={0.3} />
+              <Link href={`/recetas/${alimento}`}>
+                <Button type="primary" auto aria-label="Buscar">
+                  Buscar
+                </Button>
+              </Link>
+            </Row>
+            <Spacer />
+            <Card>
+              <div className={styles.center}>
+                <img
+                  src="/appleandlemon.gif"
+                  alt="Apple and Lemon"
+                  className={styles.gif}
+                />
+                <Spacer y={0.3} />
+                <Text size={18}>Realiza una búsqueda</Text>
+              </div>
+            </Card>
+            <Spacer />
           </Grid>
           <Spacer />
-          <Grid md={4} sm={8} justify="center">
-            <div style={{ width: "230px" }}>
+          <Grid
+            md={4}
+            sm={12}
+            direction="column"
+            justify="center"
+            // css={{ backgroundColor: "gray" }}
+          >
+            <Text h4>Tabla de Referencia Alimenticia</Text>
+            <Spacer />
+            <div className={styles.chart}>
               <ChartP data={dataChart} />
             </div>
+            <Spacer />
+            <Card>
+              <Text h5 align="center">
+                Leyenda
+              </Text>
+              <Spacer />
+              <Legend color="#47ba27" label="Frutas" num="25%" />
+              <Legend color="#47ba27" label="Verduras" num="25%" />
+              <Legend color="#fec533" label="Cereales" num="25%" />
+              <Legend
+                color="#f55200"
+                label="Alimentos de Origen Animal"
+                num="13%"
+              />
+              <Legend color="#d20a00" label="Leguminosas" num="12%" />
+            </Card>
+            <Spacer />
           </Grid>
         </Grid.Container>
       </div>

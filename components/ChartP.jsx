@@ -11,9 +11,6 @@ export const options = {
     },
   },
   responsive: true,
-  scales: {
-    max: 100,
-  },
 };
 
 // export const data = {

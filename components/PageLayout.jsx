@@ -20,13 +20,7 @@ export default function PageLayout({ children, title = "Home | NutriTech" }) {
       <header>
         <div>
           <Link href="/">
-            <Image
-              src={Logo}
-              alt="Logo NutriTech"
-              width={89}
-              height={50}
-              onBlur={true}
-            />
+            <Image src={Logo} alt="Logo NutriTech" width={89} height={50} />
           </Link>
         </div>
         <div className="navActions">
@@ -56,7 +50,6 @@ export default function PageLayout({ children, title = "Home | NutriTech" }) {
             align-items: center;
             padding: 1.2rem 2rem;
             height: 80px;
-            
           }
           main {
             padding: 40px 80px 0px;
