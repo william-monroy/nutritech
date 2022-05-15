@@ -99,6 +99,21 @@ export default function Food() {
                   placeholder="Buscar alimento"
                   aria-label="Buscar alimento"
                   onChange={(e) => setAlimento(e.target.value)}
+              />
+              <Spacer x={0.3} />
+              <Link href={`/recetas/${alimento}`}>
+                <Button type="primary" auto aria-label="Buscar">
+                  Buscar
+                </Button>
+              </Link>
+            </Row>
+            <Spacer />
+            <Card>
+              <div className={styles.center}>
+                <img
+                  src="/appleandlemon.gif"
+                  alt="Apple and Lemon"
+                  className={styles.gif}
                 />
                 <Spacer x={0.3} />
                 <Link href={`/recetas/${alimento.toLowerCase()}`}>
