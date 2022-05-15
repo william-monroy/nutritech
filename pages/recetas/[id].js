@@ -34,8 +34,6 @@ export default function Receta({ receta }) {
           >
             Información nutrimental de: {receta[0].nombre}
           </Text>
-          <h1></h1>
-          <h3>(Porción recomendada)</h3>
         </header>
         <section className={styles.contentCenter}>
           <Image
