@@ -6,7 +6,7 @@ import styles from "../../styles/Recetas.module.css";
 import Image from "next/image";
 import { recetasTipicas } from "../../lib/recetas";
 
-const colorCat = ["default", "success", "error", "warning", "orange"];
+const colorCat = ["$default", "$success", "$error", "$warning", "$orange"];
 
 const dataFake = [
   {
@@ -153,7 +153,7 @@ export default function Receta({ receta }) {
               <h4>Ingredientes</h4>
               <ul>
               {
-                receta[0].ingredientes.map((ingrediente) => <Card color={colorCat[ingrediente.categoria]} key={ingrediente.id}>{ingrediente.nombre}</Card>)
+                receta[0].ingredientes.map((ingrediente) => <Card css={{backgroundColor: colorCat[ingrediente.categoria] }} key={ingrediente.id}>{ingrediente.nombre}</Card>)
               }
               </ul>
             </div>
@@ -194,7 +194,7 @@ export async function getServerSideProps(context) {
     };
   }
 
-  const receta = recetasTipicas.filter((rece) => rece.nombre === context.params.id);
+  const receta = recetasTipicas.filter((rece) => rece.nombre.toLowerCase() === context.params.id);
   console.log("prueba receta:", session);
   console.log(receta);
 

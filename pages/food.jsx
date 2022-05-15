@@ -83,7 +83,7 @@ export default function Food() {
                 onChange={(e) => setAlimento(e.target.value)}
               />
               <Spacer x={0.3} />
-              <Link href={`/recetas/${alimento}`}>
+              <Link href={`/recetas/${alimento.toLowerCase()}`}>
                 <Button type="primary" auto aria-label="Buscar">
                   Buscar
                 </Button>
