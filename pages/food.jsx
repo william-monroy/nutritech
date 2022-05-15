@@ -115,7 +115,7 @@ export default function Food() {
               transition={{ duration: 1 }}
               initial={{ opacity: 0, scale: 0 }}
             >
-              <Card css={{ minHeight: "450px", alignItems: "center" }}>
+              <Card css={{ alignItems: "center" }}>
                 <div className={styles.center}>
                   <img
                     src="/appleandlemon.gif"
