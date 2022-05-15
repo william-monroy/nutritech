@@ -5,6 +5,8 @@ import { getSession, useSession } from "next-auth/react";
 import styles from "../../styles/Recetas.module.css";
 import Image from "next/image";
 import { recetasTipicas } from "../../lib/recetas";
+import { BiArrowBack } from "react-icons/bi";
+import Link from "next/link";
 
 const colorCat = ["$default", "$success", "$error", "$warning", "$orange"];
 
@@ -132,6 +134,13 @@ export default function Receta({ receta }) {
 
   return (
     <PageLayout>
+      <Row>
+        <Link href="/food">
+          <Text size={30} color="primary" css={{ margin: "0px" }}>
+            <BiArrowBack />
+          </Text>
+        </Link>
+      </Row>
       <main className={styles.main}>
         <header className={styles.header}>
           <Text
@@ -147,22 +156,35 @@ export default function Receta({ receta }) {
           <h3>(Porción recomendada)</h3>
         </header>
         <section className={styles.contentCenter}>
-          <Image className="imagenReceta" src={receta[0].imagen} alt="Receta image" width={350} height={350} />
+          <Image
+            className="imagenReceta"
+            src={receta[0].imagen}
+            alt="Receta image"
+            width={350}
+            height={350}
+          />
           <div className={styles.contentInfo}>
             <div className={styles.ingredientes}>
               <h4>Ingredientes</h4>
               <ul>
-              {
-                receta[0].ingredientes.map((ingrediente) => <Card css={{backgroundColor: colorCat[ingrediente.categoria] }} key={ingrediente.id}>{ingrediente.nombre}</Card>)
-              }
+                {receta[0].ingredientes.map((ingrediente) => (
+                  <Card
+                    css={{ backgroundColor: colorCat[ingrediente.categoria] }}
+                    key={ingrediente.id}
+                  >
+                    {ingrediente.nombre}
+                  </Card>
+                ))}
               </ul>
             </div>
             <div className={styles.cantidad}>
               <h4>Cantidad</h4>
               <ul>
-              {
-                receta[0].ingredientes.map((ingrediente) => <Card key={ingrediente.id} >{`${ingrediente.cantidad} ${ingrediente.unidad}`}</Card>)
-              }
+                {receta[0].ingredientes.map((ingrediente) => (
+                  <Card
+                    key={ingrediente.id}
+                  >{`${ingrediente.cantidad} ${ingrediente.unidad}`}</Card>
+                ))}
               </ul>
             </div>
           </div>
@@ -194,11 +216,13 @@ export async function getServerSideProps(context) {
     };
   }
 
-  const receta = recetasTipicas.filter((rece) => rece.nombre.toLowerCase() === context.params.id);
+  const receta = recetasTipicas.filter(
+    (rece) => rece.nombre.toLowerCase() === context.params.id
+  );
   console.log("prueba receta:", session);
   console.log(receta);
 
-  if(receta === []){
+  if (receta === []) {
     return {
       redirect: {
         destination: "/404",
@@ -206,7 +230,7 @@ export async function getServerSideProps(context) {
       },
     };
   }
-  
+
   return {
     props: { session, receta },
   };

@@ -11,7 +11,7 @@ import {
 import React, { useState, useEffect } from "react";
 import { ChartP } from "../components/ChartP";
 import styles from "../styles/Food.module.css";
-
+import { motion } from "framer-motion";
 import PageLayout from "../components/PageLayout";
 import { getSession, useSession } from "next-auth/react";
 import Legend from "../components/Legend";
@@ -53,15 +53,21 @@ export default function Food() {
         <Grid.Container gap={2}>
           <Grid md={12}>
             <Row>
-              <Text
-                h1
-                // size={45}
-                css={{
-                  textGradient: "45deg, $blue600 -20%, $pink600 50%",
-                }}
+              <motion.div
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.7 }}
+                initial={{ opacity: 0, x: "-100px" }}
               >
-                ¿Qué comer?
-              </Text>
+                <Text
+                  h1
+                  // size={45}
+                  css={{
+                    textGradient: "45deg, $blue600 -20%, $pink600 50%",
+                  }}
+                >
+                  ¿Qué comer?
+                </Text>
+              </motion.div>
             </Row>
           </Grid>
           <Grid
@@ -71,36 +77,55 @@ export default function Food() {
             // css={{ backgroundColor: "$blue400" }}
           >
             <Spacer y={0.5} />
-            <Text size={18}>
-              Si dudas de qué alimentos vas a consumir, consulta aquí:
-            </Text>
+            <motion.div
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1.5 }}
+              initial={{ opacity: 0, x: "-100px" }}
+            >
+              <Text size={18}>
+                Si dudas de qué alimentos vas a consumir, consulta aquí:
+              </Text>
+            </motion.div>
             <Spacer y={0.5} />
-            <Row>
-              <Input
-                type="text"
-                placeholder="Buscar alimento"
-                aria-label="Buscar alimento"
-                onChange={(e) => setAlimento(e.target.value)}
-              />
-              <Spacer x={0.3} />
-              <Link href={`/recetas/${alimento.toLowerCase()}`}>
-                <Button type="primary" auto aria-label="Buscar">
-                  Buscar
-                </Button>
-              </Link>
-            </Row>
-            <Spacer />
-            <Card>
-              <div className={styles.center}>
-                <img
-                  src="/appleandlemon.gif"
-                  alt="Apple and Lemon"
-                  className={styles.gif}
+            <motion.div
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1.5 }}
+              initial={{ opacity: 0, x: "-100px" }}
+              css={{ display: "flex" }}
+            >
+              <Row>
+                <Input
+                  type="text"
+                  placeholder="Buscar alimento"
+                  aria-label="Buscar alimento"
+                  onChange={(e) => setAlimento(e.target.value)}
                 />
-                <Spacer y={0.3} />
-                <Text size={18}>Realiza una búsqueda</Text>
-              </div>
-            </Card>
+                <Spacer x={0.3} />
+                <Link href={`/recetas/${alimento.toLowerCase()}`}>
+                  <Button type="primary" auto aria-label="Buscar">
+                    Buscar
+                  </Button>
+                </Link>
+              </Row>
+            </motion.div>
+            <Spacer />
+            <motion.div
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1 }}
+              initial={{ opacity: 0, scale: 0 }}
+            >
+              <Card css={{minHeight: "450px", alignItems: "center"}}>
+                <div className={styles.center}>
+                  <img
+                    src="/appleandlemon.gif"
+                    alt="Apple and Lemon"
+                    className={styles.gif}
+                  />
+                  <Spacer y={0.3} />
+                  <Text size={18}>Realiza una búsqueda</Text>
+                </div>
+              </Card>
+            </motion.div>
             <Spacer />
           </Grid>
           <Spacer />
@@ -111,27 +136,41 @@ export default function Food() {
             justify="center"
             // css={{ backgroundColor: "gray" }}
           >
-            <Text h4>Tabla de Referencia Alimenticia</Text>
-            <Spacer />
-            <div className={styles.chart}>
-              <ChartP data={dataChart} />
+            <div className={styles.center}>
+              <motion.div
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 1 }}
+                initial={{ opacity: 0, scale: 0 }}
+              >
+                <Text h4>Tabla de Referencia Alimenticia</Text>
+              </motion.div>
+              <Spacer />
+              <div className={styles.chart}>
+                <ChartP data={dataChart} />
+              </div>
             </div>
             <Spacer />
-            <Card>
-              <Text h5 align="center">
-                Leyenda
-              </Text>
-              <Spacer />
-              <Legend color="#47ba27" label="Frutas" num="25%" />
-              <Legend color="#47ba27" label="Verduras" num="25%" />
-              <Legend color="#fec533" label="Cereales" num="25%" />
-              <Legend
-                color="#f55200"
-                label="Alimentos de Origen Animal"
-                num="13%"
-              />
-              <Legend color="#d20a00" label="Leguminosas" num="12%" />
-            </Card>
+            <motion.div
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1 }}
+              initial={{ opacity: 0, scale: 0 }}
+            >
+              <Card>
+                <Text h5 align="center">
+                  Leyenda
+                </Text>
+                <Spacer />
+                <Legend color="#47ba27" label="Frutas" num="25%" />
+                <Legend color="#47ba27" label="Verduras" num="25%" />
+                <Legend color="#fec533" label="Cereales" num="25%" />
+                <Legend
+                  color="#f55200"
+                  label="Alimentos de Origen Animal"
+                  num="13%"
+                />
+                <Legend color="#d20a00" label="Leguminosas" num="12%" />
+              </Card>
+            </motion.div>
             <Spacer />
           </Grid>
         </Grid.Container>
