@@ -2,26 +2,19 @@ import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
 import Logo from "../public/logo.png";
-import {signOut, useSession} from 'next-auth/react';
-import { Button } from "@nextui-org/react";
+import { signOut, useSession } from "next-auth/react";
+import { Button, Text } from "@nextui-org/react";
 import SwitchTheme from "./SwitchTheme";
 
-
-export default function PageLayout({
-  children,
-  title = "Home | NutriTech",
-}) {
-  const { data: session, status } = useSession()
-  if (status === 'loading') return null // si esta cargando no mostrar nada
+export default function PageLayout({ children, title = "Home | NutriTech" }) {
+  const { data: session, status } = useSession();
+  if (status === "loading") return null; // si esta cargando no mostrar nada
 
   return (
     <>
       <Head>
         <title>{title}</title>
-        <meta
-          name="description"
-          content="NutriTech"
-        />
+        <meta name="description" content="NutriTech" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <header>
@@ -30,22 +23,25 @@ export default function PageLayout({
             <Image
               src={Logo}
               alt="Logo NutriTech"
-              width={200}
-              height={80}
+              width={100}
+              height={50}
               onBlur={true}
             />
           </Link>
         </div>
         <div className="navActions">
-          {session&&
-            (<section className="profileData">
-            <img src={session?.user.image} alt={`profile image of ${session?.user.name}`} />
-            <h5>{session?.user.name}</h5>
-          </section>)}
+          {session && (
+            <section className="profileData">
+              <img
+                src={session?.user.image}
+                alt={`profile image of ${session?.user.name}`}
+              />
+              {/* <h5>{session?.user.name}</h5> */}
+              <Text h6>{session?.user.name}</Text>
+            </section>
+          )}
           <SwitchTheme />
-          <Button color="error" auto ghost
-            onClick={() => signOut()}
-          >
+          <Button color="error" auto ghost onClick={() => signOut()}>
             Sign out
           </Button>
         </div>
@@ -56,10 +52,11 @@ export default function PageLayout({
           header {
             display: flex;
             justify-content: space-between;
+            width: 100%;
             align-items: center;
             padding: 1.2rem 2rem;
-            height: auto;
-            // background-color: #f5f5f5;
+            height: 80px;
+            
           }
           main {
             padding: 40px 80px 0px;
@@ -72,7 +69,7 @@ export default function PageLayout({
             flex-direction: row;
             justify-content: center;
             align-items: center;
-            gap: 80px;
+            gap: 20px;
           }
 
           .profileData {
@@ -84,10 +81,15 @@ export default function PageLayout({
           }
 
           .profileData > img {
-            width: 64px;
-            heigth: 64px;
+            width: 50px;
+            heigth: 50px;
             border-radius: 50%;
           }
+
+          @media (max-width: 768px) {
+            .profileData {
+              display: none;
+            }
         `}
       </style>
     </>

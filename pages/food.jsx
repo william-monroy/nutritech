@@ -1,4 +1,4 @@
-import { Grid, Row, Spacer, Text } from "@nextui-org/react";
+import { Grid, Input, Row, Spacer, Text } from "@nextui-org/react";
 import React from "react";
 import { ChartP } from "../components/ChartP";
 import SwitchTheme from "../components/SwitchTheme";
@@ -39,24 +39,45 @@ export default function Food() {
     <PageLayout>
       <div className={styles.Food}>
         <Grid.Container>
-          <Grid md={12} css={{ backgroundColor: "$accents4" }}>
+          {/* <Grid md={12} css={{ backgroundColor: "$accents4" }}> */}
+          <Grid md={12}>
             <Row>
-              <Text h1>¿Qué comer?</Text>
-            </Row>
-            <Spacer />
-          </Grid>
-            <Row>
-              <Text h2>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum
-                reprehenderit architecto accusamus odio amet mollitia.
+              <Text
+                h1
+                size={40}
+                css={{
+                  textGradient: "45deg, $blue600 -20%, $pink600 50%",
+                }}
+              >
+                ¿Qué comer?
               </Text>
             </Row>
-          {/* <Grid md={8} css={{backgroundColor: '$blue200'}}>
-          </Grid> */}
+          </Grid>
+          <Grid
+            md={7}
+            xs={12}
+            // css={{ backgroundColor: "$yellow600" }}
+            direction="column"
+          >
+            <Spacer y={0.5} />
+            <Text size={18}>
+              Si dudas de qué alimentos vas a consumir, consulta aquí:
+            </Text>
+            <Spacer y={0.5} />
+            <Input
+              type="text"
+              placeholder="Buscar alimento"
+              css={{ mw: "350px" }}
+              aria-label="Buscar alimento"
+            />
+          </Grid>
+          <Spacer />
+          <Grid md={4} sm={8} justify="center">
+            <div style={{ width: "230px" }}>
+              <ChartP data={dataChart} />
+            </div>
+          </Grid>
         </Grid.Container>
-        <div style={{ width: "350px" }}>
-          <ChartP data={dataChart} />
-        </div>
       </div>
     </PageLayout>
   );
@@ -74,7 +95,7 @@ export async function getServerSideProps(context) {
     };
   }
 
-  console.log("prueba food:",session);
+  console.log("prueba food:", session);
   return {
     props: { session },
   };
