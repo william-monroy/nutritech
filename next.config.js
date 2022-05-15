@@ -12,4 +12,10 @@ const nextConfig = withPWA({
   }
 })
 
-module.exports = nextConfig
+
+module.exports = {
+  ...nextConfig,
+  images: {
+    domains: ['i.postimg.cc'],
+  }
+}

@@ -86,10 +86,15 @@ export default function PageLayout({ children, title = "Home | NutriTech" }) {
             border-radius: 50%;
           }
 
-          @media (max-width: 768px) {
+          @media (max-width: 600px) {
             .profileData {
               display: none;
             }
+
+            main {
+              padding: 40px 20px 0px;
+            }
+          }
         `}
       </style>
     </>
