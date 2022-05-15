@@ -1,0 +1,6 @@
+.autocomplete {
+  background-color: var(--nextui-colors-backgroundContrast);
+  padding: 15px;
+  margin-top: 5px;
+  border-radius: 10px;
+}

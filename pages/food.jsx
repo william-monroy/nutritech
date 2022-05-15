@@ -16,6 +16,8 @@ import PageLayout from "../components/PageLayout";
 import { getSession, useSession } from "next-auth/react";
 import Legend from "../components/Legend";
 import Link from "next/link";
+import Autocomplete from "../components/Autocomplete";
+import { IoMdDownload } from "react-icons/io";
 
 export default function Food() {
   const [alimento, setAlimento] = useState("");
@@ -96,8 +98,8 @@ export default function Food() {
               <Row>
                 <Input
                   type="text"
-                  placeholder="Buscar alimento"
-                  aria-label="Buscar alimento"
+                  placeholder="Ejm: Tlayudas, Tejate, etc."
+                  aria-label="Buscar Receta"
                   onChange={(e) => setAlimento(e.target.value)}
                 />
                 <Spacer x={0.3} />
@@ -127,6 +129,22 @@ export default function Food() {
                 </div>
               </Card>
             </motion.div>
+            <Spacer />
+            <Row css={{ flexWrap: "wrap" }} justify="space-evenly">
+              <a target="_blank" href="/lista_de_alimentos.pdf">
+                <Button color="error" ghost icon={<IoMdDownload />}>
+                  Lista de Alimentos
+                </Button>
+                <Spacer />
+              </a>
+              <Link href="/recetas/saludables">
+                <Button color="error" ghost>
+                  Menus Saludables
+                </Button>
+              </Link>
+            </Row>
+            <Spacer />
+            {/* <Autocomplete /> */}
             <Spacer />
           </Grid>
           <Spacer />
