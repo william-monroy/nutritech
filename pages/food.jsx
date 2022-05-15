@@ -99,29 +99,30 @@ export default function Food() {
                   placeholder="Buscar alimento"
                   aria-label="Buscar alimento"
                   onChange={(e) => setAlimento(e.target.value)}
-              />
-              <Spacer x={0.3} />
-              <Link href={`/recetas/${alimento}`}>
-                <Button type="primary" auto aria-label="Buscar">
-                  Buscar
-                </Button>
-              </Link>
-            </Row>
-            <Spacer />
-            <Card>
-              <div className={styles.center}>
-                <img
-                  src="/appleandlemon.gif"
-                  alt="Apple and Lemon"
-                  className={styles.gif}
                 />
                 <Spacer x={0.3} />
-                <Link href={`/recetas/${alimento.toLowerCase()}`}>
+                <Link href={`/recetas/${alimento}`}>
                   <Button type="primary" auto aria-label="Buscar">
                     Buscar
                   </Button>
                 </Link>
               </Row>
+              <Spacer />
+              <Card>
+                <div className={styles.center}>
+                  <img
+                    src="/appleandlemon.gif"
+                    alt="Apple and Lemon"
+                    className={styles.gif}
+                  />
+                  <Spacer x={0.3} />
+                  <Link href={`/recetas/${alimento.toLowerCase()}`}>
+                    <Button type="primary" auto aria-label="Buscar">
+                      Buscar
+                    </Button>
+                  </Link>
+                </div>
+              </Card>
             </motion.div>
             <Spacer />
             <motion.div
@@ -129,7 +130,7 @@ export default function Food() {
               transition={{ duration: 1 }}
               initial={{ opacity: 0, scale: 0 }}
             >
-              <Card css={{minHeight: "450px", alignItems: "center"}}>
+              <Card css={{ minHeight: "450px", alignItems: "center" }}>
                 <div className={styles.center}>
                   <img
                     src="/appleandlemon.gif"
