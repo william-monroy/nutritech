@@ -6,7 +6,7 @@ import styles from "../../styles/Recetas.module.css";
 import Image from "next/image";
 import { recetasTipicas } from "../../lib/recetas";
 
-const colorCat = ["default", "success", "warning", "error"];
+const colorCat = ["default", "success", "error", "warning", "orange"];
 
 const dataFake = [
   {
@@ -126,7 +126,7 @@ const dataFake = [
   },
 ];
 
-export default function Receta({ id }) {
+export default function Receta({ receta }) {
   const { data, status } = useSession();
   if (status === "loading") return null; // si esta cargando no mostrar nada
 
@@ -141,19 +141,19 @@ export default function Receta({ id }) {
               textGradient: "45deg, $blue600 -20%, $pink600 50%",
             }}
           >
-            Información nutrimental de: {dataFake[0].nombre}
+            Información nutrimental de: {receta[0].nombre}
           </Text>
           <h1></h1>
           <h3>(Porción recomendada)</h3>
         </header>
         <section className={styles.contentCenter}>
-          <Image className="imagenReceta" src={dataFake[0].imgURL} alt="Receta image" width={350} height={350} />
+          <Image className="imagenReceta" src={receta[0].imagen} alt="Receta image" width={350} height={350} />
           <div className={styles.contentInfo}>
             <div className={styles.ingredientes}>
               <h4>Ingredientes</h4>
               <ul>
               {
-                dataFake[0].ingredientes.map((ingrediente) => <Card color={colorCat[ingrediente.categoria]} key={ingrediente.id}>{ingrediente.nombre}</Card>)
+                receta[0].ingredientes.map((ingrediente) => <Card color={colorCat[ingrediente.categoria]} key={ingrediente.id}>{ingrediente.nombre}</Card>)
               }
               </ul>
             </div>
@@ -161,7 +161,7 @@ export default function Receta({ id }) {
               <h4>Cantidad</h4>
               <ul>
               {
-                dataFake[0].ingredientes.map((ingrediente) => <Card key={ingrediente.id} >{`${ingrediente.cantidad} ${ingrediente.unidad}`}</Card>)
+                receta[0].ingredientes.map((ingrediente) => <Card key={ingrediente.id} >{`${ingrediente.cantidad} ${ingrediente.unidad}`}</Card>)
               }
               </ul>
             </div>
@@ -170,11 +170,11 @@ export default function Receta({ id }) {
         <section className={styles.contentAlarms}>
           <div className={styles.contentAlerta}>
             <h3>Alerta</h3>
-            <p>{dataFake[0].alerta}</p>
+            <p>{receta[0].alerta}</p>
           </div>
           <div className={styles.contentLeyenda}>
             <h3>Leyenda precautoria</h3>
-            <p>{dataFake[0].leyenda}</p>
+            <p>{receta[0].leyenda}</p>
           </div>
         </section>
       </main>
@@ -194,9 +194,20 @@ export async function getServerSideProps(context) {
     };
   }
 
-
+  const receta = recetasTipicas.filter((rece) => rece.nombre === context.params.id);
   console.log("prueba receta:", session);
+  console.log(receta);
+
+  if(receta === []){
+    return {
+      redirect: {
+        destination: "/404",
+        permanent: false,
+      },
+    };
+  }
+  
   return {
-    props: { session, id: context.params.id },
+    props: { session, receta },
   };
 }
