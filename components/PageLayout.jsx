@@ -23,7 +23,7 @@ export default function PageLayout({ children, title = "Home | NutriTech" }) {
             <Image
               src={Logo}
               alt="Logo NutriTech"
-              width={100}
+              width={89}
               height={50}
               onBlur={true}
             />
