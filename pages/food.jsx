@@ -98,7 +98,7 @@ export default function Food() {
               <Row>
                 <Input
                   type="text"
-                  placeholder="Buscar Receta. Ejm: Tlayudas"
+                  placeholder="Ejm: Tlayudas, Tejate, etc."
                   aria-label="Buscar Receta"
                   onChange={(e) => setAlimento(e.target.value)}
                 />
@@ -130,20 +130,21 @@ export default function Food() {
               </Card>
             </motion.div>
             <Spacer />
-            <Row css={{ flexWrap: "wrap" }} justify="center">
+            <Row css={{ flexWrap: "wrap" }} justify="space-evenly">
               <a target="_blank" href="/lista_de_alimentos.pdf">
                 <Button color="error" ghost icon={<IoMdDownload />}>
                   Lista de Alimentos
                 </Button>
+                <Spacer />
               </a>
-              <Spacer />
               <Link href="/recetas/saludables">
                 <Button color="error" ghost>
                   Menus Saludables
                 </Button>
               </Link>
             </Row>
-            <Autocomplete />
+            <Spacer />
+            {/* <Autocomplete /> */}
             <Spacer />
           </Grid>
           <Spacer />
