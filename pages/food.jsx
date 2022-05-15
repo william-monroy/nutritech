@@ -129,16 +129,16 @@ export default function Food() {
                 </div>
               </Card>
             </motion.div>
-            <Spacer />
+            <Spacer y={2} />
             <Row css={{ flexWrap: "wrap" }} justify="space-evenly">
               <a target="_blank" href="/lista_de_alimentos.pdf">
-                <Button color="error" ghost icon={<IoMdDownload />}>
+                <Button color="primary" ghost icon={<IoMdDownload />}>
                   Lista de Alimentos
                 </Button>
                 <Spacer />
               </a>
               <Link href="/recetas/saludables">
-                <Button color="error" ghost>
+                <Button color="success" ghost>
                   Menus Saludables
                 </Button>
               </Link>
