@@ -1,7 +1,7 @@
 import { Collapse } from "@nextui-org/react";
 import { Grid, Card, Row, Spacer, Text } from "@nextui-org/react";
 import { recetasSaludables } from "../../lib/recetas";
-import styles from "../../styles/recetasSaludables.module.css";
+import styles from "../../styles/RecetasSaludables.module.css";
 import PageLayout from "../../components/PageLayout";
 import Image from "next/image";
 import { motion } from "framer-motion";
